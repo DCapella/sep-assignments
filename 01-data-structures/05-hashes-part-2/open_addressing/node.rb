@@ -6,5 +6,6 @@ class Node
   def initialize(key, value)
     @key = key
     @value = value
+    @next = 0
   end
 end
