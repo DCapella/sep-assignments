@@ -13,12 +13,20 @@ class SeparateChaining
     node_index = self.index(key, @items.length)
     if @items[node_index].nil?
       @items[node_index] = node_item
+    elsif @items[node_index].key != key
+      @items[node_index].next << node_item
     end
   end
 
   def [](key)
     node_index = index(key, @items.length)
-    @items[node_index].value
+    if @items[node_index].key == key || @items[node_index].next.empty?
+      return @items[node_index].value
+    else
+      @items[node_index].next.each do |node|
+        return node.value if node.key == key
+      end
+    end
   end
 
   # Returns a unique, deterministically reproducible index into an array
@@ -30,19 +38,28 @@ class SeparateChaining
 
   # Calculate the current load factor
   def load_factor
-    current_load_factor = self.size / @items.length
+    current_load_factor = Float(self.size_not_nil) / Float(self.size)
     if current_load_factor >= 0.75
       self.resize
-      self.load_factor
+      return self.load_factor
     end
     current_load_factor
   end
 
   # Simple method to return the number of items in the hash
   def size
+    @items.length
+  end
+
+  def size_not_nil
     count = 0
-    for @items.each do |item|
-      count += 1 unless item.nil?
+    @items.each do |item|
+      if !item.nil?
+        count += 1
+        if !item.next.empty?
+          count += item.next.length
+        end
+      end
     end
     count
   end
@@ -54,6 +71,11 @@ class SeparateChaining
     temp_items.each do |item|
       unless item.nil?
         self.[]=(item.key, item.value)
+        unless item.next.empty?
+          item.next.each do |i|
+            self.[]=(i.key, i.value)
+          end
+        end
       end
     end
   end
