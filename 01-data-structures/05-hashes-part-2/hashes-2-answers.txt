@@ -1,8 +1,16 @@
 Question: Describe three collision resolution strategies not mentioned here.
 Answer:
-  1.
-  2.
-  3.
+  1. Linear Probing
+    - Linear, goes through each one until it finds an empty cell.
+  2. Double
+    - Has two hashing functions.
+    - When collision in one, checks the other then uses second function key to
+      increment the first function key.
+  3. Random
+    - Uses random integer for key and on collision repeats until empty.
 
 
 Question: Create your own collision resolution strategy and describe how it works.
+Answer:
+  Box - When collision happens, store second key, value pair as a branch of the
+        first key, value pair.
