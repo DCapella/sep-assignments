@@ -1,0 +1,32 @@
+QUESTION: Print both Trees to the console and compare the difference between
+your Binary Search Tree and your Heap.
+
+ANSWER:
+  Binary Search Tree: 0.10246 seconds to load
+  Binary Heap Tree: 0.0923 seconds to load
+
+QUESTION: Insert all numbers from 1 to 100000 into both Trees, then use
+Benchmark to compare performance:
+
+  How much time does an average insertion consume in the Binary Search Tree
+  compared to the Heap?
+  ANSWER:
+    Binary Search Tree: 0.020055 Seconds Total // 2.0055e-07 Seconds average per insertion
+    Binary Heap Tree: 0.190699 Seconds Total //   1.90699e-06 seconds average per insertion
+
+  How much time does finding 50000 in the Binary Search Tree consume compared
+  to the Heap?
+  ANSWER: Depending on how the heap tree is set up, it would either take the
+          heap tree faster or about the same time.
+
+  How much time does the average deletion consume in a Binary Search Tree
+  compared to the Heap?
+  ANSWER: Same answer as above.
+
+  When would you use a Binary Search Tree and why?
+  ANSWER: When you need to insert, swap or delete. Takes less memory thus taking
+          less time.
+
+  When would you use an Heap and why?
+  ANSWER: When you need access to the largest or smallest item because that will
+          be at the top.
